@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Lizbeth Garcia" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <title>Commissions</title>
+ 
+  </head>
+  <body>
+    <script>
+      let subtotal = 0;
+      let userInput; 
+
+      //Ask for users name//
+      let userName = prompt(
+        "Hello, please enter your name to begin: "
+      );
+        
+// Do while loop until user types "done" 
+       do {
+    userInput = prompt("Enter the dollar amount for your sales a single sale at a time. Enter Done when you are finished:");
+
+    if (userInput.toLowerCase() !== "done") {
+      let sale = parseFloat(userInput);
+
+      // Check if userInput is a valid number
+      if (!isNaN(sale) && sale > 0) {
+        subtotal += sale;
+      } else {
+        alert("Please enter a valid number or 'Done'.");
+      }
+    }
+
+  } while (userInput.toLowerCase() !== "done");
+    
+// Determine commission rate based on total
+      let commissionRate;
+
+      if (subtotal >= 1000) {
+        commissionRate = 0.15;
+      } else if (subtotal > 499.99) {
+        commissionRate = 0.10;
+      } else if (subtotal > 0.01) {
+        commissionRate = 0.05;
+      } else {
+        commissionRate = 0;
+      }
+
+// Calculate commission and total earnings
+  let totalCommission = subtotal * commissionRate;
+  let totalEarnings = subtotal + totalCommission;
+
+ // Extract all answers and display the Report //
+      document.write(`
+  <p>
+    Hello ${userName},
+    Here is your Weekly Commission Report.<br><br>
+    Your sales total is $${subtotal.toFixed(2)}, so your commission rate is ${(
+        commissionRate * 100
+      ).toFixed(2)}%.<br>
+    Your total commission is $${totalCommission.toFixed(2)}.<br>
+    Your total earnings are $${totalEarnings.toFixed(2)}.
+  </p>
+`);
+    </script>
+  </body>
+</html>
